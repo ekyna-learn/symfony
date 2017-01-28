@@ -1,0 +1,19 @@
+app_home:
+    path:     /
+    defaults: { _controller: AppBundle:Page:index }
+
+app_shop_index:
+    path:     /shop
+    defaults: { _controller: AppBundle:Shop:index }
+
+app_cart:
+    path:     /cart
+    defaults: { _controller: AppBundle:Page:cart }
+
+app_contact:
+    path:     /contact
+    defaults: { _controller: AppBundle:Page:contact }
+
+app_admin:
+    prefix: /admin
+    resource: routing/admin.yml
