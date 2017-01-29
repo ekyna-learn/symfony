@@ -18,7 +18,14 @@ class ShopController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('AppBundle:Shop:index.html.twig');
+        $categories = $this
+            ->getDoctrine()
+            ->getRepository('AppBundle:Category')
+            ->findAll();
+
+        return $this->render('AppBundle:Shop:index.html.twig', [
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -30,11 +37,17 @@ class ShopController extends Controller
      */
     public function categoryAction($categorySlug)
     {
-        // TODO Fetch category by slug
+        $category = $this->findCategoryBySlug($categorySlug);
 
-        // TODO Fetch products by category
+        $products = $this
+            ->getDoctrine()
+            ->getRepository('AppBundle:Product')
+            ->findByCategory($category);
 
-        return $this->render('AppBundle:Shop:category.html.twig');
+        return $this->render('AppBundle:Shop:category.html.twig', [
+            'category' => $category,
+            'products' => $products,
+        ]);
     }
 
     /**
@@ -47,11 +60,20 @@ class ShopController extends Controller
      */
     public function productAction($categorySlug, $productSlug)
     {
-        // TODO Fetch category by slug
+        $category = $this->findCategoryBySlug($categorySlug);
 
-        // TODO Fetch product by slug
+        $product = $this
+            ->getDoctrine()
+            ->getRepository('AppBundle:Product')
+            ->findOneBySlug($productSlug);
 
-        return $this->render('AppBundle:Shop:product.html.twig');
+        if (!$product || $category != $product->getCategory()) {
+            throw $this->createNotFoundException('Product not found.');
+        }
+
+        return $this->render('AppBundle:Shop:product.html.twig', [
+            'product' => $product,
+        ]);
     }
 
     /**
@@ -70,6 +92,30 @@ class ShopController extends Controller
             throw $this->createNotFoundException('Image not found');
         }
 
-        return new BinaryFileResponse($image->getFile());
+        $response = new BinaryFileResponse($image->getFile());
+        $response->setMaxAge(3600);
+
+        return $response;
+    }
+
+    /**
+     * Finds the category by his slug.
+     *
+     * @param string $slug
+     *
+     * @return \AppBundle\Entity\Category|null
+     */
+    private function findCategoryBySlug($slug)
+    {
+        $category = $this
+            ->getDoctrine()
+            ->getRepository('AppBundle:Category')
+            ->findOneBySlug($slug);
+
+        if (!$category) {
+            throw $this->createNotFoundException('Category not found.');
+        }
+
+        return $category;
     }
 }

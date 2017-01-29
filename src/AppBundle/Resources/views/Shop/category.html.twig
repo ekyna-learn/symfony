@@ -1,7 +1,7 @@
 {% extends "AppBundle::base.html.twig" %}
 
 {% block title %}
-    {{ parent() }} - [Category's seo title]
+    {{ parent() }} - {{ category.seo.title }}
 {% endblock %}
 
 {% block content %}
@@ -9,19 +9,46 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="page-header">
-                    <h1>[Category title]</h1>
+                    <h1>{{ category.title }}</h1>
                     <p>
-                        [Category description]
+                        {{ category.description }}
                     </p>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div>
-                    [Category's products list]
+    </div>
+    <div class="container">
+        {% for product in products %}
+            {% if loop.index0 % 3 == 0 %}<div class="row">{% endif %}
+            <div class="col-md-4 text-center">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3>{{ product.title }}</h3>
+                        {% if product.images|length > 0 %}
+                            {% set image = product.images|first %}
+                            <img src="{{ image|image_path }}" alt="{{ image.alt }}" class="img-responsive">
+                        {% else %}
+                            {# TODO default image #}
+                        {% endif %}
+                    </div>
+                    <div class="panel-footer">
+                        <p>
+                            <strong style="display:inline-block; padding: 5px 10px; font-size: 16px; line-height: 1.5;">
+                                {{ product.price|localizedcurrency('EUR') }}
+                            </strong>
+                            {# TODO add to cart #}
+                            <a href="javascript: void(0)" class="btn btn-sm btn-primary">
+                                Ajouter au panier
+                            </a>
+                            <a href="{{ path('app_shop_product', {'categorySlug': category.slug, 'productSlug': product.slug}) }}"
+                               class="btn btn-sm btn-primary">
+                                En savoir plus
+                            </a>
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
+            {% if loop.index % 3 == 0 or loop.last %}</div>{% endif %}
+        {% endfor %}
     </div>
 {% endblock content %}

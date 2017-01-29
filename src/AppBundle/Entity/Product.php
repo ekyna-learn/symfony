@@ -212,7 +212,7 @@ class Product
     /**
      * Get features
      *
-     * @return ArrayCollection
+     * @return ArrayCollection|Feature[]
      */
     public function getFeatures()
     {

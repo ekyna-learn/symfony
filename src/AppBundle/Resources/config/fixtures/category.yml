@@ -1,6 +1,6 @@
 AppBundle\Entity\Category:
     smartphones:
-        title: Smarpthones
+        title: Smartphones
         description: |
             Découvrez notre collection de smartphones !
         seo: <createSeo('Nos smartphones', 'Acheter smartphones')>
