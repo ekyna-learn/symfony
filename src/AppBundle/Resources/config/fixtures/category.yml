@@ -1,0 +1,11 @@
+AppBundle\Entity\Category:
+    smartphones:
+        title: Smarpthones
+        description: |
+            Découvrez notre collection de smartphones !
+        seo: <createSeo('Nos smartphones', 'Acheter smartphones')>
+    tablets:
+        title: Tablette tactiles
+        description: |
+            Découvrez notre collection de tablettes tactiles !
+        seo:  <createSeo('Nos tablettes tactiles', 'Acheter tablettes tactiles')>

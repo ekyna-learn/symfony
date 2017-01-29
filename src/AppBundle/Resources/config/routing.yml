@@ -6,6 +6,13 @@ app_shop_index:
     path:     /shop
     defaults: { _controller: AppBundle:Shop:index }
 
+app_shop_image:
+    path:     /shop/image/{imageId}
+    defaults:
+        _controller: AppBundle:Shop:image
+    requirements:
+        imageId: \d+
+
 app_shop_category:
     path:     /shop/{categorySlug}
     defaults:

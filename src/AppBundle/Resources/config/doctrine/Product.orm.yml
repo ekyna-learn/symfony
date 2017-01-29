@@ -1,0 +1,61 @@
+AppBundle\Entity\Product:
+    type: entity
+    table: product
+    repositoryClass: AppBundle\Repository\ProductRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+            unique: true
+        description:
+            type: text
+            nullable: true
+        price:
+            type: decimal
+            precision: '7'
+            scale: '2'
+        slug:
+            type: string
+            length: 255
+            unique: true
+    oneToOne:
+        seo:
+            targetEntity: AppBundle\Entity\Seo
+            joinColumn:
+                name: seo_id
+                referencedColumnName: id
+            cascade: [all]
+            onDelete: RESTRICT
+    oneToMany:
+        images:
+            targetEntity: AppBundle\Entity\Image
+            mappedBy: product
+            cascade: [all]
+    manyToOne:
+        category:
+            targetEntity: AppBundle\Entity\Category
+            joinColum:
+                name: category_id
+                referencedColumnName: id
+            onDelete: RESTRICT
+    manyToMany:
+        features:
+            targetEntity: AppBundle\Entity\Feature
+            inversedBy: products
+            joinTable:
+                name: products_features
+                joinColumns:
+                    product_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    feature_id:
+                        referencedColumnName: id
+    lifecycleCallbacks:
+        prePersist: [onPrePersist]
+        preUpdate: [onPreUpdate]

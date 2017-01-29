@@ -1,0 +1,33 @@
+AppBundle\Entity\Category:
+    type: entity
+    table: category
+    repositoryClass: AppBundle\Repository\CategoryRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+            unique: true
+        description:
+            type: text
+            nullable: true
+        slug:
+            type: string
+            length: 255
+            unique: true
+    oneToOne:
+        seo:
+            targetEntity: AppBundle\Entity\Seo
+            joinColumn:
+                name: seo_id
+                referencedColumnName: id
+            cascade: [all]
+            onDelete: RESTRICT
+    lifecycleCallbacks:
+        prePersist: [onPrePersist]
+        preUpdate: [onPreUpdate]

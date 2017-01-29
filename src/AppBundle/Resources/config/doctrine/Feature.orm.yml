@@ -1,0 +1,19 @@
+AppBundle\Entity\Feature:
+    type: entity
+    table: feature
+    repositoryClass: AppBundle\Repository\FeatureRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+            unique: true
+    manyToMany:
+        products:
+            targetEntity: AppBundle\Entity\Product
+            mappedBy: features

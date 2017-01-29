@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
  * Class ShopController
@@ -51,5 +52,24 @@ class ShopController extends Controller
         // TODO Fetch product by slug
 
         return $this->render('AppBundle:Shop:product.html.twig');
+    }
+
+    /**
+     * Shop Image action.
+     *
+     * @param int $imageId
+     *
+     * @return BinaryFileResponse
+     */
+    public function imageAction($imageId)
+    {
+        /** @var \AppBundle\Entity\Image $image */
+        $image = $this->getDoctrine()->getRepository('AppBundle:Image')->find($imageId);
+
+        if (null === $image) {
+            throw $this->createNotFoundException('Image not found');
+        }
+
+        return new BinaryFileResponse($image->getFile());
     }
 }

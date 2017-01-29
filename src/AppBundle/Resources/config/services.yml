@@ -1,4 +1,22 @@
+parameters:
+    image_directory: '%kernel.root_dir%/../var/data/image'
+
 services:
-#    app.example:
-#        class: AppBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    app.upload.image_uploader:
+        class: AppBundle\Upload\Uploader
+        arguments: ['%image_directory%']
+
+    app.event_listener.image:
+        class: AppBundle\EventListener\ImageEventListener
+        arguments: ['@app.upload.image_uploader']
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: postRemove }
+            - { name: doctrine.event_listener, event: postLoad }
+
+    app.twig.shop_extension:
+        class: AppBundle\Twig\ShopExtension
+        arguments: ['@router']
+        tags:
+            - { name: twig.extension }
