@@ -6,6 +6,10 @@ app_shop_index:
     path:     /shop
     defaults: { _controller: AppBundle:Shop:index }
 
+app_shop_cart:
+    path:     /shop/cart
+    defaults: { _controller: AppBundle:Shop:cart }
+
 app_shop_image:
     path:     /shop/image/{imageId}
     defaults:
@@ -27,10 +31,6 @@ app_shop_product:
     requirements:
         categorySlug: "[a-z0-9-]+"
         productSlug: "[a-z0-9-]+"
-
-app_cart:
-    path:     /cart
-    defaults: { _controller: AppBundle:Page:cart }
 
 app_contact:
     path:     /contact

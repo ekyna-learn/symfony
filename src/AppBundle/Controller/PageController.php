@@ -21,16 +21,6 @@ class PageController extends Controller
     }
 
     /**
-     * Cart action.
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function cartAction()
-    {
-        return $this->render('AppBundle:Page:cart.html.twig');
-    }
-
-    /**
      * Contact action.
      *
      * @return \Symfony\Component\HttpFoundation\Response

@@ -104,6 +104,16 @@ class ShopController extends Controller
     }
 
     /**
+     * Cart action.
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function cartAction()
+    {
+        return $this->render('AppBundle:Shop:cart.html.twig');
+    }
+
+    /**
      * Finds the category by his slug.
      *
      * @param string $slug

@@ -28,11 +28,11 @@ class LayoutController extends Controller
             [
                 'caption' => 'Catégories',
                 'route'   => 'app_shop_index',
-                'match'   => '~^app_shop_~',
+                'match'   => '~^app_shop(!_cart)?~',
             ],
             [
                 'caption' => 'Panier',
-                'route'   => 'app_cart',
+                'route'   => 'app_shop_cart',
             ],
             [
                 'caption' => 'Contact',
