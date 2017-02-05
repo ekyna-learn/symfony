@@ -59,33 +59,13 @@ class ImageEventListener
     /**
      * Post remove event handler.
      *
-     * @param PreUpdateEventArgs $args
+     * @param LifecycleEventArgs $args
      */
-    public function postRemove(PreUpdateEventArgs $args)
+    public function postRemove(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
 
         $this->removeFile($entity);
-    }
-
-    /**
-     * Post load event handler.
-     *
-     * @param LifecycleEventArgs $args
-     */
-    public function postLoad(LifecycleEventArgs $args)
-    {
-        $entity = $args->getEntity();
-
-        // Check if the entity is an instance of Image, and abort if not
-        if (!$entity instanceof Image) {
-            return;
-        }
-
-        $fileName = $entity->getFile();
-
-        // Transforms the file name into a File object
-        $entity->setFile($this->uploader->loadFile($fileName));
     }
 
     /**
@@ -100,13 +80,15 @@ class ImageEventListener
             return;
         }
 
-        // Only deals with ploaded file object
-        $file = $entity->getFile();
+        // Only deals with uploaded file object
+        $file = $entity->getUpload();
         if (!$file instanceof UploadedFile) {
             return;
         }
 
         $fileName = $this->uploader->upload($file);
+
+        $this->removeFile($entity);
 
         $entity->setFile($fileName);
     }
@@ -123,11 +105,8 @@ class ImageEventListener
             return;
         }
 
-        $file = $entity->getFile();
-        if (!$file instanceof File) {
-            return;
+        if (null !== $file = $this->uploader->loadFile($entity->getFile())) {
+            $this->uploader->remove($file);
         }
-
-        $this->uploader->remove($file);
     }
 }

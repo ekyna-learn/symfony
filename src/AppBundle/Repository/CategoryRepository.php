@@ -21,9 +21,13 @@ class CategoryRepository extends EntityRepository
         $qb = $this->createQueryBuilder('c');
 
         return $qb
-            ->where($qb->expr()->eq('c.slug', ':slug'))
+            ->andWhere($qb->expr()->eq('c.slug', ':slug'))
+            ->andWhere($qb->expr()->eq('c.enabled', ':enabled'))
             ->getQuery()
-            ->setParameter('slug', $slug)
+            ->setParameters([
+                'slug'    => $slug,
+                'enabled' => true,
+            ])
             ->getOneOrNullResult();
     }
 }

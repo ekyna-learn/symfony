@@ -20,6 +20,10 @@ class LoadData implements FixtureInterface
      */
     private $directory;
 
+
+    /**
+     * {@inheritdoc}
+     */
     public function load(ObjectManager $manager)
     {
         $this->directory = realpath(__DIR__ . '/../../Resources/config/fixtures');
@@ -77,7 +81,7 @@ class LoadData implements FixtureInterface
         $image = new Image();
 
         $image
-            ->setFile(new UploadedFile($target, $file, null, null, null, true)) // Last arg fakes the upload test
+            ->setUpload(new UploadedFile($target, $file, null, null, null, true)) // Last arg fakes the upload test
             ->setAlt($alt);
 
         return $image;

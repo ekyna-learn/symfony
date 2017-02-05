@@ -21,7 +21,7 @@ class ShopController extends Controller
         $categories = $this
             ->getDoctrine()
             ->getRepository('AppBundle:Category')
-            ->findAll();
+            ->findBy(['enabled' => true]);
 
         return $this->render('AppBundle:Shop:index.html.twig', [
             'categories' => $categories,
@@ -92,7 +92,12 @@ class ShopController extends Controller
             throw $this->createNotFoundException('Image not found');
         }
 
-        $response = new BinaryFileResponse($image->getFile());
+        $uploader = $this->get('app.upload.image_uploader');
+        if (null === $file = $uploader->loadFile($image->getFile())) {
+            throw $this->createNotFoundException('File not found');
+        }
+
+        $response = new BinaryFileResponse($file);
         $response->setMaxAge(3600);
 
         return $response;

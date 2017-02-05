@@ -16,6 +16,9 @@ AppBundle\Entity\Category:
         description:
             type: text
             nullable: true
+        enabled:
+            type: boolean
+            nullable: false
         slug:
             type: string
             length: 255

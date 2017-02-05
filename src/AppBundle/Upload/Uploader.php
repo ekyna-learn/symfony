@@ -41,7 +41,13 @@ class Uploader
      */
     public function loadFile($fileName)
     {
-        return new File($this->directory . '/' . $fileName);
+        $path = $this->directory . '/' . $fileName;
+
+        if (is_file($path)) {
+            return new File($path);
+        }
+
+        return null;
     }
 
     /**

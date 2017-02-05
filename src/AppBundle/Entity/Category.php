@@ -31,6 +31,11 @@ class Category
     private $description;
 
     /**
+     * @var bool
+     */
+    private $enabled;
+
+    /**
      * @var string
      */
     private $slug;
@@ -45,7 +50,7 @@ class Category
     }
 
     /**
-     * Get the string representation.
+     * Returns the string representation.
      *
      * @return string
      */
@@ -134,6 +139,30 @@ class Category
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set enabled
+     *
+     * @param bool $enabled
+     *
+     * @return Category
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = (bool)$enabled;
+
+        return $this;
+    }
+
+    /**
+     * Get enabled
+     *
+     * @return bool
+     */
+    public function isEnabled()
+    {
+        return $this->enabled;
     }
 
     /**

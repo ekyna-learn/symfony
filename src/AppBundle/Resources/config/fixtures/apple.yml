@@ -10,6 +10,8 @@ AppBundle\Entity\Product:
             fonctions photo et vidéo renforcées, des changements d'interface attendus, et un système de visiophonie pour
             converser de visu.
         price: 228.85
+        stock: 5
+        releasedAt: 2014-8-20
         features:
             - '@wifi'
             - '@3g'
@@ -25,6 +27,8 @@ AppBundle\Entity\Product:
             appareil photo iSight 8 Mpx avec Focus Pixels. Le capteur d´identité par empreinte digitaleTouch ID. Une
             connectivité plus rapide en 4G LTE comme en Wi-Fi.
         price: 392.78
+        stock: 40
+        releasedAt: 2015-10-10
         features:
             - '@wifi'
             - '@3g'
@@ -42,6 +46,8 @@ AppBundle\Entity\Product:
             doté de l’écran d’iPhone le plus éclatant et le plus lumineux. Il résiste aux éclaboussures et à l’eau. Et
             sa puissance est à la hauteur de son look. Vous attendiez l’iPhone 7, le voici.
         price: 673.55
+        stock: 50
+        releasedAt: 2016-11-15
         features:
             - '@wifi'
             - '@3g'
@@ -61,6 +67,8 @@ AppBundle\Entity\Product:
             Full HD 1080p) et poids et épaisseur rabotés. Le capteur photo-vidéo avant conserve 1,2 Mpx, tandis que la
             connectivité sans fil s'entiche d'un GPS, du Wi-Fi a/b/g/n/ac double-bande MIMO et du Bluetooth 4.0.
         price: 442.00
+        stock: 0
+        releasedAt: 2014-04-19
         features:
             - '@wifi'
             - '@3g'
@@ -79,6 +87,8 @@ AppBundle\Entity\Product:
             HD en 1080p. D'après la presse spécialisée, la plus belle réussite d'Apple en terme de tablette tactile au
             format idéal.
         price: 445.94
+        stock: 25
+        releasedAt: 2015-02-12
         features:
             - '@wifi'
             - '@3g'
@@ -93,6 +103,8 @@ AppBundle\Entity\Product:
             L'iPad Pro livre une puissance vertigineuse, en 12,9 et 9,7 pouces. Découvrez la puce A9X, l'écran Retina
             avancé, l'appareil iSight 12 Mpx et plus.
         price: 853.00
+        stock: 40
+        releasedAt: 2016-05-15
         features:
             - '@wifi'
             - '@3g'

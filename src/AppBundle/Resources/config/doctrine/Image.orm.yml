@@ -15,7 +15,8 @@ AppBundle\Entity\Image:
         alt:
             type: string
             length: 255
-            nullable: true
+        updatedAt:
+            type: datetime
     manyToOne:
         product:
             targetEntity: AppBundle\Entity\Product
@@ -23,4 +24,8 @@ AppBundle\Entity\Image:
             joinColumn:
                 name: product_id
                 referencedColumnName: id
-            onDelete: CASCADE
+                nullable: false
+            onDelete: CASCADE # Deletion is managed on database level
+    # lifecycleCallbacks: {}
+    # Persistence events are handled by the service defined in :
+    # src/AppBundle/EventListener/ImageEventListener.php

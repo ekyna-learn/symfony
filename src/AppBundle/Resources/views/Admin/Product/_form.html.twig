@@ -1,0 +1,24 @@
+{{ form_row(form.title) }}
+{{ form_row(form.description) }}
+{{ form_row(form.price) }}
+{{ form_row(form.stock) }}
+{{ form_row(form.releasedAt) }}
+{{ form_row(form.seo) }}
+{{ form_row(form.category) }}
+{{ form_row(form.features) }}
+
+<div class="form-group">
+    {{ form_label(form.images) }}
+    <div class="col-sm-10">
+        <ul id="product_images" class="list-unstyled"
+            data-prototype="{{
+                form_widget(form.images.vars.prototype)|e('html_attr')
+            }}">
+            {% for child in form.images.children %}
+                <li>{{ form_widget(child) }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{{ form_rest(form) }}

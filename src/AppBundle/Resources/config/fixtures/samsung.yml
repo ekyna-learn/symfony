@@ -9,6 +9,8 @@ AppBundle\Entity\Product:
             remarquables grâce à son processeur Dual core 1.7 GHz. Le Galaxy S4 Mini est compatible avec la norme 4G /
             LTE pour profiter du réseau mobile le plus rapide.
         price: 319.01
+        stock: 0
+        releasedAt: 2013-7-15
         features:
             - '@wifi'
             - '@3g'
@@ -24,6 +26,8 @@ AppBundle\Entity\Product:
             la norme IP 67, votre GALAXY S5 mini est protégé contre la sueur, la pluie, les liquides, le sable et la
             poussière. Le large écran Super AMOLED HD de 4.5 pouces vous offre une expérience visuelle époustouflante.
         price: 746.94
+        stock: 15
+        releasedAt: 2014-4-20
         features:
             - '@wifi'
             - '@3g'
@@ -44,6 +48,8 @@ AppBundle\Entity\Product:
             d'arêtes trop saillantes, le fabricant coréen a donc modifé la version "+"  avec un léger biseau qui adoucit
             grandement le contact avec la paume.
         price: 806.96
+        stock: 25
+        releasedAt: 2015-8-10
         features:
             - '@wifi'
             - '@3g'
@@ -65,26 +71,12 @@ AppBundle\Entity\Product:
             jusqu'à un maximum de 64 Go supplémentaires. Deux capteurs photo-vidéo sont de la partie, l'un de 3,2
             mégapixels à l'arrière, l'autre de 1,3 mégapixel en façade.
         price: 334.00
+        stock: 2
+        releasedAt: 2013-1-20
         features:
             - '@wifi'
         images:
             - <createImage('galaxy-tab-3.jpg', 'Galaxy Tab 3')>
-    galaxy_tab_s2:
-        category: '@tablets'
-        title: Samsung Galaxy Tab S2
-        seo:  <createSeo('Samsung Galaxy S2', 'Découvrez le nouveau Samsung Galaxy S2')>
-        description: |
-            La Samsung Galaxy Tab S2 est une tablette sortie en 2 formats, le premier avec un écran de 8 pouces et un
-            second modèle avec un écran de 9.7 pouces. La Tab S2 propose un processeur 8 coeurs, accompagné de 3 Go de
-            Ram. Elle offre en outre une connectique assez complète, micro USB, micro SD jusqu'à 128 Go, elle tourne
-            également sous Android 5.0 lollipop. Une tablette qui se veut être le haut de gamme de Samsung.
-        price: 498.00
-        features:
-            - '@wifi'
-            - '@3g'
-            - '@4g'
-        images:
-            - <createImage('galaxy-tab-s2.jpg', 'Galaxy Tab S2')>
     galaxy_tab_a:
         category: '@tablets'
         title: Samsung Galaxy Tab A
@@ -96,9 +88,29 @@ AppBundle\Entity\Product:
             fait l'impasse sur la solution Super AMOLED propre au constructeur pour lui préférer une technologie TFT
             moins coûteuse, et il faudra compter sur une (trop) maigre définition d'écran (1024 x 768 px).
         price: 296.00
+        stock: 35
+        releasedAt: 2015-05-20
         features:
             - '@wifi'
             - '@3g'
             - '@4g'
         images:
             - <createImage('galaxy-tab-a.jpg', 'Galaxy Tab A')>
+    galaxy_tab_s2:
+        category: '@tablets'
+        title: Samsung Galaxy Tab S2
+        seo:  <createSeo('Samsung Galaxy S2', 'Découvrez le nouveau Samsung Galaxy S2')>
+        description: |
+            La Samsung Galaxy Tab S2 est une tablette sortie en 2 formats, le premier avec un écran de 8 pouces et un
+            second modèle avec un écran de 9.7 pouces. La Tab S2 propose un processeur 8 coeurs, accompagné de 3 Go de
+            Ram. Elle offre en outre une connectique assez complète, micro USB, micro SD jusqu'à 128 Go, elle tourne
+            également sous Android 5.0 lollipop. Une tablette qui se veut être le haut de gamme de Samsung.
+        price: 498.00
+        stock: 25
+        releasedAt: 2015-8-01
+        features:
+            - '@wifi'
+            - '@3g'
+            - '@4g'
+        images:
+            - <createImage('galaxy-tab-s2.jpg', 'Galaxy Tab S2')>

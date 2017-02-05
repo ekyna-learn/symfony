@@ -13,10 +13,15 @@ services:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: preUpdate }
             - { name: doctrine.event_listener, event: postRemove }
-            - { name: doctrine.event_listener, event: postLoad }
 
     app.twig.shop_extension:
         class: AppBundle\Twig\ShopExtension
         arguments: ['@router']
         tags:
             - { name: twig.extension }
+
+#    app.repository.product:
+#        class: AppBundle\Repository\ProductRepository
+#        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+#        arguments:
+#            - AppBundle\Entity\Product

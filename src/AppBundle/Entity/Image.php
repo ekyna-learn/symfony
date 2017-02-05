@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 /**
  * Image
  */
@@ -26,6 +28,16 @@ class Image
      * @var string
      */
     private $alt;
+
+    /**
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * @var UploadedFile
+     */
+    private $upload;
 
 
     /**
@@ -89,7 +101,7 @@ class Image
     /**
      * Get file
      *
-     * @return string|\Symfony\Component\HttpFoundation\File\UploadedFile
+     * @return string
      */
     public function getFile()
     {
@@ -118,6 +130,56 @@ class Image
     public function getAlt()
     {
         return $this->alt;
+    }
+
+    /**
+     * Sets the updatedAt.
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Image
+     */
+    public function setUpdatedAt(\DateTime $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Returns the updatedAt.
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Sets the upload.
+     *
+     * @param UploadedFile $upload
+     *
+     * @return Image
+     */
+    public function setUpload(UploadedFile $upload)
+    {
+        $this->upload = $upload;
+
+        $this->setUpdatedAt(new \DateTime());
+
+        return $this;
+    }
+
+    /**
+     * Returns the upload.
+     *
+     * @return UploadedFile
+     */
+    public function getUpload()
+    {
+        return $this->upload;
     }
 }
 
