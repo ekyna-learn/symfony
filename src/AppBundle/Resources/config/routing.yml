@@ -2,40 +2,19 @@ app_home:
     path:     /
     defaults: { _controller: AppBundle:Page:index }
 
-app_shop_index:
-    path:     /shop
-    defaults: { _controller: AppBundle:Shop:index }
-
-app_shop_cart:
-    path:     /shop/cart
-    defaults: { _controller: AppBundle:Shop:cart }
-
-app_shop_image:
-    path:     /shop/image/{imageId}
-    defaults:
-        _controller: AppBundle:Shop:image
-    requirements:
-        imageId: \d+
-
-app_shop_category:
-    path:     /shop/{categorySlug}
-    defaults:
-        _controller: AppBundle:Shop:category
-    requirements:
-        categorySlug: "[a-z0-9-]+"
-
-app_shop_product:
-    path:     /shop/{categorySlug}/{productSlug}
-    defaults:
-        _controller: AppBundle:Shop:product
-    requirements:
-        categorySlug: "[a-z0-9-]+"
-        productSlug: "[a-z0-9-]+"
 
 app_contact:
     path:     /contact
     defaults: { _controller: AppBundle:Page:contact }
 
+app_shop:
+    prefix: /shop
+    resource: routing/shop.yml
+
 app_admin:
     prefix: /admin
     resource: routing/admin.yml
+
+app_product:
+    resource: "routing/product.yml"
+    prefix:   /admin/product

@@ -1,0 +1,23 @@
+{% extends 'AppBundle:Admin:base.html.twig' %}
+
+{% block content %}
+    <h1>Product creation</h1>
+    <hr>
+
+    {% include "product/_form.html.twig" %}
+
+    <hr>
+    <ul class="list-inline">
+        <li>
+            <a href="{{ path('product_index') }}" class="btn btn-sm btn-default">
+                Back to the list
+            </a>
+        </li>
+    </ul>
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/app/js/product-images.js') }}"></script>
+{% endblock javascripts %}

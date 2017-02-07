@@ -1,0 +1,11 @@
+AppBundle\Entity\Product:
+    properties:
+        title:
+            - NotBlank: ~
+        price:
+            - GreaterThan: 0
+        stock:
+            - GreaterThanOrEqual: 0
+        releasedAt:
+            - NotBlank: ~
+            - Type: \DateTime
