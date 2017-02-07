@@ -9,3 +9,35 @@ AppBundle\Entity\Product:
         releasedAt:
             - NotBlank: ~
             - Type: \DateTime
+        features:
+            - Count:
+                min: 1
+        images:
+            - Count:
+                min: 1
+        seo:
+            - Valid: ~
+        category:
+            - Valid: ~
+
+AppBundle\Entity\Image:
+    properties:
+        alt:
+            - NotBlank: ~
+
+AppBundle\Entity\Seo:
+    properties:
+        title:
+            - NotBlank: ~
+
+AppBundle\Entity\User:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: username
+    properties:
+        username:
+            - NotBlank: ~
+            - Length:
+                min: 3
+    getters:
+        isActive:
+            - IsTrue: ~

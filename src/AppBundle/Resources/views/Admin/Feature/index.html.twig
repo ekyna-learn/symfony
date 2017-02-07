@@ -1,7 +1,7 @@
 {% extends 'AppBundle:Admin:base.html.twig' %}
 
 {% block content %}
-    <h1>Products list</h1>
+    <h1>Features list</h1>
     <hr>
     <div class="table-responsive">
         <table class="table table-stripped table-condensed">
@@ -9,38 +9,28 @@
                 <tr>
                     <th>Id</th>
                     <th>Title</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Stock</th>
-                    <th>Releasedat</th>
-                    <th>Slug</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-            {% for product in products %}
+            {% for feature in features %}
                 <tr>
                     <td>
-                        <a href="{{ path('product_show', { 'id': product.id }) }}">
-                            {{ product.id }}
+                        <a href="{{ path('app_admin_feature_show', { 'id': feature.id }) }}">
+                            {{ feature.id }}
                         </a>
                     </td>
-                    <td>{{ product.title }}</td>
-                    <td>{{ product.description }}</td>
-                    <td>{{ product.price }}</td>
-                    <td>{{ product.stock }}</td>
-                    <td>{% if product.releasedAt %}{{ product.releasedAt|date('Y-m-d') }}{% endif %}</td>
-                    <td>{{ product.slug }}</td>
+                    <td>{{ feature.title }}</td>
                     <td>
                         <ul class="list-inline">
                             <li>
-                                <a href="{{ path('product_show', { 'id': product.id }) }}"
+                                <a href="{{ path('app_admin_feature_show', { 'id': feature.id }) }}"
                                     class="btn btn-xs btn-primary">
                                     Show
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ path('product_edit', { 'id': product.id }) }}"
+                                <a href="{{ path('app_admin_feature_edit', { 'id': feature.id }) }}"
                                     class="btn btn-xs btn-warning">
                                     Edit
                                 </a>
@@ -55,8 +45,8 @@
     <hr>
     <ul class="list-inline">
         <li>
-            <a href="{{ path('product_new') }}" class="btn btn-sm btn-success">
-                Create a new product
+            <a href="{{ path('app_admin_feature_new') }}" class="btn btn-sm btn-success">
+                Create a new feature
             </a>
         </li>
     </ul>

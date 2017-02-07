@@ -6,6 +6,24 @@ app_shop_cart:
     path:     /cart
     defaults: { _controller: AppBundle:Shop:cart }
 
+app_shop_cart_add:
+    path:     /cart/add/{productId}/{quantity}
+    defaults:
+        _controller: AppBundle:Shop:add
+        quantity: 1
+
+app_shop_cart_decrement:
+    path:     /cart/decrement/{productId}
+    defaults: { _controller: AppBundle:Shop:decrement }
+
+app_shop_cart_increment:
+    path:     /cart/increment/{productId}
+    defaults: { _controller: AppBundle:Shop:increment }
+
+app_shop_cart_remove:
+    path:     /cart/remove/{productId}
+    defaults: { _controller: AppBundle:Shop:remove }
+
 app_shop_image:
     path:     /image/{imageId}
     defaults:

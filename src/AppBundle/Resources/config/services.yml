@@ -20,8 +20,26 @@ services:
         tags:
             - { name: twig.extension }
 
-#    app.repository.product:
-#        class: AppBundle\Repository\ProductRepository
-#        factory: ['@doctrine.orm.default_entity_manager', getRepository]
-#        arguments:
-#            - AppBundle\Entity\Product
+    app.repository.product:
+        class: AppBundle\Repository\ProductRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - AppBundle\Entity\Product
+
+    app.service.cart_provider:
+        class: AppBundle\Service\CartProvider
+        arguments:
+            - '@session'
+            - '@app.repository.product'
+
+    app.service:cart_calculator:
+        class: AppBundle\Service\CartCalculator
+        arguments:
+            - '@app.service.cart_provider'
+
+    app.service.user_manager:
+        class: AppBundle\Service\UserManager
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+            - '@validator'
+            - '@security.password_encoder'

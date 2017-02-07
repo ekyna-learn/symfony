@@ -57,18 +57,65 @@ class Cart
     }
 
     /**
+     * Increments the item quantity matching the given product id.
+     *
+     * @param int $productId
+     *
+     * @return bool
+     */
+    public function incrementQuantityByProductId($productId)
+    {
+        foreach ($this->items as $index => $item) {
+            if ($productId == $item->getProduct()->getId()) {
+                $item->setQuantity($item->getQuantity() + 1);
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Decrements the item quantity matching the given product id.
+     *
+     * @param int $productId
+     *
+     * @return bool
+     */
+    public function decrementQuantityByProductId($productId)
+    {
+        foreach ($this->items as $index => $item) {
+            if ($productId == $item->getProduct()->getId()) {
+                if (1 < $item->getQuantity()) {
+                    $item->setQuantity($item->getQuantity() - 1);
+
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Removes the item matching the given product id.
      *
-     * @param $productId
+     * @param int $productId
+     *
+     * @return bool
      */
     public function removeItemByProductId($productId)
     {
         foreach ($this->items as $index => $item) {
-            if ($productId === $item->getProduct()->getId()) {
+            if ($productId == $item->getProduct()->getId()) {
                 unset($this->items[$index]);
-                break;
+
+                return true;
             }
         }
+
+        return false;
     }
 
     /**

@@ -26,9 +26,9 @@ class LayoutController extends Controller
                 'route'   => 'app_home',
             ],
             [
-                'caption' => 'Catégories',
+                'caption' => 'Catalogue',
                 'route'   => 'app_shop_index',
-                'match'   => '~^app_shop(!_cart)?~',
+                'match'   => '~^app_shop_(index|category|product)~',
             ],
             [
                 'caption' => 'Panier',

@@ -4,12 +4,12 @@
     <h1>Product edit</h1>
     <hr>
 
-    {% include "product/_form.html.twig" %}
+    {% include "AppBundle:Admin/Product:_form.html.twig" %}
 
     <hr>
     <ul class="list-inline">
         <li>
-            <a href="{{ path('product_index') }}" class="btn btn-sm btn-default">
+            <a href="{{ path('app_admin_product_index') }}" class="btn btn-sm btn-default">
                 Back to the list
             </a>
         </li>

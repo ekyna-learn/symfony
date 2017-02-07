@@ -19,7 +19,7 @@
             </tr>
             <tr>
                 <th>Price</th>
-                <td>{{ product.price }}</td>
+                <td>{{ product.price|localizedcurrency('EUR') }}</td>
             </tr>
             <tr>
                 <th>Stock</th>
@@ -27,23 +27,19 @@
             </tr>
             <tr>
                 <th>Releasedat</th>
-                <td>{% if product.releasedAt %}{{ product.releasedAt|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ product.slug }}</td>
+                <td>{% if product.releasedAt %}{{ product.releasedAt|date('d/m/Y') }}{% endif %}</td>
             </tr>
         </tbody>
     </table>
     <hr>
     <ul class="list-inline">
         <li>
-            <a href="{{ path('product_index') }}" class="btn btn-sm btn-default">
+            <a href="{{ path('app_admin_product_index') }}" class="btn btn-sm btn-default">
                 Back to the list
             </a>
         </li>
         <li>
-            <a href="{{ path('product_edit', { 'id': product.id }) }}"
+            <a href="{{ path('app_admin_product_edit', { 'id': product.id }) }}"
                 class="btn btn-sm btn-warning">
                 Edit
             </a>

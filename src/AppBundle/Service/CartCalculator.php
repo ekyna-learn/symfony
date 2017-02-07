@@ -30,8 +30,16 @@ class CartCalculator
      */
     public function getCartTotal()
     {
-        // TODO
+        $total = 0;
 
-        return 0;
+        $cart = $this->cartProvider->getCart();
+
+        foreach ($cart->getItems() as $item) {
+            $price = $item->getProduct()->getPrice();
+
+            $total += $price * $item->getQuantity();
+        }
+
+        return $total;
     }
 }

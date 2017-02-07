@@ -65,7 +65,7 @@ class CartProvider
      *
      * @return bool Whether it succeed or not.
      */
-    public function addToCart($productId, $quantity)
+    public function add($productId, $quantity)
     {
         $this->loadCart();
 
@@ -83,6 +83,60 @@ class CartProvider
         }
 
         return false;
+    }
+
+    /**
+     * Decrements the quantity for the given product id.
+     *
+     * @param int $productId
+     *
+     * @return bool
+     */
+    public function decrement($productId)
+    {
+        $this->loadCart();
+
+        $success = $this->cart->decrementQuantityByProductId($productId);
+
+        $this->saveCart();
+
+        return $success;
+    }
+
+    /**
+     * Increments the quantity for the given product id.
+     *
+     * @param int $productId
+     *
+     * @return bool
+     */
+    public function increment($productId)
+    {
+        $this->loadCart();
+
+        $success = $this->cart->incrementQuantityByProductId($productId);
+
+        $this->saveCart();
+
+        return $success;
+    }
+
+    /**
+     * Removes the item for the given product id.
+     *
+     * @param int $productId
+     *
+     * @return bool
+     */
+    public function remove($productId)
+    {
+        $this->loadCart();
+
+        $success = $this->cart->removeItemByProductId($productId);
+
+        $this->saveCart();
+
+        return $success;
     }
 
     /**

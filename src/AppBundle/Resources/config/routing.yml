@@ -1,11 +1,8 @@
-app_home:
-    path:     /
-    defaults: { _controller: AppBundle:Page:index }
+app_security:
+    resource: routing/security.yml
 
-
-app_contact:
-    path:     /contact
-    defaults: { _controller: AppBundle:Page:contact }
+app_page:
+    resource: routing/page.yml
 
 app_shop:
     prefix: /shop
@@ -14,7 +11,3 @@ app_shop:
 app_admin:
     prefix: /admin
     resource: routing/admin.yml
-
-app_product:
-    resource: "routing/product.yml"
-    prefix:   /admin/product

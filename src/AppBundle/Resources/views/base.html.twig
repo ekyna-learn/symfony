@@ -26,6 +26,8 @@
     {# Navbar #}
     {{ render(controller('AppBundle:Layout:navbar', {request: app.request})) }}
 
+    {% include "AppBundle:Layout:flashes.html.twig" %}
+
     {# Content #}
     {% block content %}{% endblock %}
 

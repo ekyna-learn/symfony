@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class ShopController
@@ -110,7 +111,98 @@ class ShopController extends Controller
      */
     public function cartAction()
     {
-        return $this->render('AppBundle:Shop:cart.html.twig');
+        $cart = $this->getCartProvider()->getCart();
+
+        $total = $this
+            ->get('app.service:cart_calculator')
+            ->getCartTotal();
+
+        return $this->render('AppBundle:Shop:cart.html.twig', [
+            'cart'  => $cart,
+            'total' => $total,
+        ]);
+    }
+
+    /**
+     * Add product to cart action.
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function addAction(Request $request)
+    {
+        $productId = $request->attributes->get('productId');
+        $quantity = $request->attributes->get('quantity');
+
+        if ($this->getCartProvider()->add($productId, $quantity)) {
+            $this->addFlash('success', 'Le produit a bien été ajouté au panier');
+        } else {
+            $this->addFlash('danger', 'Erreur lors de l\'ajout au panier');
+        }
+
+        // Redirige vers l'url précédente
+        $referer = $request->headers->get('referer');
+        if (0 < strlen($referer)) {
+            return $this->redirect($referer);
+        }
+
+        return $this->redirectToRoute('app_shop_index');
+    }
+
+    /**
+     * Remove product form cart action.
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function removeAction(Request $request)
+    {
+        $productId = $request->attributes->get('productId');
+
+        if ($this->getCartProvider()->remove($productId)) {
+            $this->addFlash('success', 'Le produit a bien été retiré du panier');
+        } else {
+            $this->addFlash('danger', 'Erreur lors du retrait du panier');
+        }
+
+
+        return $this->redirectToRoute('app_shop_cart');
+    }
+
+    /**
+     * Decrement product action.
+     *
+     * @param int $productId
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function decrementAction($productId)
+    {
+        $this->getCartProvider()->decrement($productId);
+
+        return $this->redirectToRoute('app_shop_cart');
+    }
+
+    /**
+     * Increment product action.
+     *
+     * @param int $productId
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function incrementAction($productId)
+    {
+        $this->getCartProvider()->increment($productId);
+
+        return $this->redirectToRoute('app_shop_cart');
+    }
+
+    /**
+     * Returns the cart provider.
+     *
+     * @return \AppBundle\Service\CartProvider
+     */
+    private function getCartProvider()
+    {
+        return $this->get('app.service.cart_provider');
     }
 
     /**

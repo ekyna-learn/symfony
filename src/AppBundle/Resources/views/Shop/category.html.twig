@@ -37,7 +37,7 @@
                                 {{ product.price|localizedcurrency('EUR') }}
                             </strong>
                             {# TODO add to cart #}
-                            <a href="javascript: void(0)" class="btn btn-sm btn-primary">
+                            <a href="{{ path('app_shop_cart_add', {'productId': product.id}) }}" class="btn btn-sm btn-primary">
                                 Ajouter au panier
                             </a>
                             <a href="{{ path('app_shop_product', {'categorySlug': category.slug, 'productSlug': product.slug}) }}"
