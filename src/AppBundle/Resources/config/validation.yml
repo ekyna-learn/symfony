@@ -4,8 +4,11 @@ AppBundle\Entity\Product:
             - NotBlank: ~
         price:
             - GreaterThan: 0
-        stock:
-            - GreaterThanOrEqual: 0
+        # Pour la validation du stock, voir la contrainte de classe :
+        # src/AppBundle/Validator/Constraints/Product.php et
+        # src/AppBundle/Validator/Constraints/ProductValidator.php
+        #stock:
+        #    - GreaterThanOrEqual: 0
         releasedAt:
             - NotBlank: ~
             - Type: \DateTime
@@ -19,6 +22,8 @@ AppBundle\Entity\Product:
             - Valid: ~
         category:
             - Valid: ~
+    constraints:
+        - AppBundle\Validator\Constraints\Product: ~
 
 AppBundle\Entity\Image:
     properties:
